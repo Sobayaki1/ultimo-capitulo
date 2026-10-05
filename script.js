@@ -205,35 +205,39 @@ const partesCarta = [
 
 
 /* ==========================================
-   EFEITO DE DIGITAÇÃO
+   EFEITO DE DIGITAÇÃO COM AUTO-SCROLL CORRIGIDO
 ========================================== */
 
+// Rola o container da carta (#tela-carta) diretamente até o fim
+function rolarParaOFim(suave = false) {
+    if (suave) {
+        telaCarta.scrollTo({
+            top: telaCarta.scrollHeight,
+            behavior: "smooth"
+        });
+    } else {
+        telaCarta.scrollTop = telaCarta.scrollHeight;
+    }
+}
+
 function escreverTexto(elemento, texto) {
-
     return new Promise((resolve) => {
-
         let indice = 0;
-
         elemento.textContent = "";
 
         const intervalo = setInterval(() => {
-
             elemento.textContent += texto[indice];
-
             indice++;
 
+            // Rola instantaneamente a cada letra sem travar a animação
+            rolarParaOFim(false);
+
             if (indice >= texto.length) {
-
                 clearInterval(intervalo);
-
                 resolve();
-
             }
-
         }, velocidadeEscrita);
-
     });
-
 }
 
 
@@ -249,10 +253,8 @@ async function iniciarCarta() {
 
     btnContinuar.classList.remove("visivel");
 
-
-    // Pequena pausa antes de começar a carta
+    // Pausa inicial
     await esperar(1200);
-
 
     for (let i = 0; i < partesCarta.length; i++) {
 
@@ -260,12 +262,12 @@ async function iniciarCarta() {
 
         textoCarta.appendChild(paragrafo);
 
-
-        // Faz o parágrafo aparecer suavemente
         await esperar(200);
 
         paragrafo.classList.add("visivel");
 
+        // Rola suavemente quando o parágrafo surge
+        rolarParaOFim(true);
 
         // Escreve letra por letra
         await escreverTexto(
@@ -273,18 +275,16 @@ async function iniciarCarta() {
             partesCarta[i]
         );
 
-
         // Pausa antes do próximo parágrafo
         await esperar(pausaEntreParagrafos);
 
     }
 
-
-    // Depois que a carta terminou
+    // Exibe o botão final e rola suavemente até ele
     await esperar(800);
 
-
     btnContinuar.classList.add("visivel");
+    rolarParaOFim(true);
 
 }
 
