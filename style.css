@@ -330,16 +330,16 @@ button:active {
 ========================= */
 
 #tela-carta {
-    align-items: flex-start;
+    display: block; /* Substitui o flexbox para permitir rolagem fluida no celular */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .carta {
     width: 100%;
-
     max-width: 600px;
-
     padding: 50px 10px 80px;
-
+    margin: 0 auto; /* Centraliza a carta na tela */
     text-align: center;
 }
 
