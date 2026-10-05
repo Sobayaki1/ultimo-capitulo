@@ -208,16 +208,20 @@ const partesCarta = [
    EFEITO DE DIGITAÇÃO COM AUTO-SCROLL CORRIGIDO
 ========================================== */
 
-// Rola o container da carta (#tela-carta) diretamente até o fim
-function rolarParaOFim(suave = false) {
-    if (suave) {
+function rolarParaBaixo() {
+    // requestAnimationFrame espera o navegador recalcular a nova altura do texto
+    requestAnimationFrame(() => {
+        telaCarta.scrollTop = telaCarta.scrollHeight;
+    });
+}
+
+function rolarParaBaixoSuave() {
+    requestAnimationFrame(() => {
         telaCarta.scrollTo({
             top: telaCarta.scrollHeight,
             behavior: "smooth"
         });
-    } else {
-        telaCarta.scrollTop = telaCarta.scrollHeight;
-    }
+    });
 }
 
 function escreverTexto(elemento, texto) {
@@ -229,8 +233,8 @@ function escreverTexto(elemento, texto) {
             elemento.textContent += texto[indice];
             indice++;
 
-            // Rola instantaneamente a cada letra sem travar a animação
-            rolarParaOFim(false);
+            // Rola acompanhando cada caractere
+            rolarParaBaixo();
 
             if (indice >= texto.length) {
                 clearInterval(intervalo);
@@ -266,8 +270,8 @@ async function iniciarCarta() {
 
         paragrafo.classList.add("visivel");
 
-        // Rola suavemente quando o parágrafo surge
-        rolarParaOFim(true);
+        // Rola suavemente ao iniciar um novo parágrafo
+        rolarParaBaixoSuave();
 
         // Escreve letra por letra
         await escreverTexto(
@@ -280,11 +284,11 @@ async function iniciarCarta() {
 
     }
 
-    // Exibe o botão final e rola suavemente até ele
+    // Exibe o botão final e rola até ele
     await esperar(800);
 
     btnContinuar.classList.add("visivel");
-    rolarParaOFim(true);
+    rolarParaBaixoSuave();
 
 }
 
