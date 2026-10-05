@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>O Último Capítulo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main id="app">
+
+        <!-- =========================
+             TELA 1 — INÍCIO
+        ========================== -->
+
+        <section id="tela-inicial" class="tela ativa">
+
+            <div class="conteudo">
+
+                <div class="ornamento">✦</div>
+
+                <h1>O ÚLTIMO CAPÍTULO</h1>
+
+                <p class="subtitulo">
+                    Algumas respostas precisam ser descobertas.<br>
+                    Outras precisam ser sentidas.
+                </p>
+
+                <div class="entrada">
+
+                    <label for="chave">
+                        DIGITE A CHAVE
+                    </label>
+
+                    <input
+                        type="text"
+                        id="chave"
+                        maxlength="10"
+                        autocomplete="off"
+                        inputmode="numeric"
+                    >
+
+                    <button id="btn-chave">
+                        DESBLOQUEAR
+                    </button>
+
+                    <p id="erro-chave" class="mensagem-erro"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TELA 2 — CHAVE ACEITA
+        ========================== -->
+
+        <section id="tela-cifra" class="tela">
+
+            <div class="conteudo">
+
+                <div class="ornamento">✦</div>
+
+                <p class="destaque">
+                    CHAVE ACEITA.
+                </p>
+
+                <p>
+                    Você encontrou o número.
+                </p>
+
+                <p>
+                    Mas o número sozinho não revela a mensagem.
+                </p>
+
+                <p class="espaco-topo">
+                    Durante o caminho,<br>
+                    você encontrou quatro letras.
+                </p>
+
+                <div class="letras">
+                    <span>A</span>
+                    <span>—</span>
+                    <span>B</span>
+                    <span>—</span>
+                    <span>C</span>
+                    <span>—</span>
+                    <span>A</span>
+                </div>
+
+                <p>
+                    Agora use a chave que descobriu.
+                </p>
+
+                <div class="entrada">
+
+                    <label for="mensagem">
+                        QUAL MENSAGEM ESTÁ ESCONDIDA AQUI?
+                    </label>
+
+                    <input
+                        type="text"
+                        id="mensagem"
+                        autocomplete="off"
+                        autocapitalize="characters"
+                    >
+
+                    <button id="btn-cifra">
+                        REVELAR
+                    </button>
+
+                    <p class="texto-cifra">
+                        V BSAPTV JHWPABSV JVTLJH HNVYH
+                    </p>
+
+                    <p id="erro-cifra" class="mensagem-erro"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TELA 3 — TRANSIÇÃO
+        ========================== -->
+
+        <section id="tela-transicao" class="tela">
+
+            <div class="conteudo">
+
+                <p id="texto-transicao">
+                    RESPOSTA CORRETA.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TELA 4 — CARTA
+        ========================== -->
+
+        <section id="tela-carta" class="tela">
+
+            <div class="carta">
+
+                <div class="ornamento">✦</div>
+
+                <h2>NOSSA HISTÓRIA</h2>
+
+                <div id="texto-carta"></div>
+
+                <button id="btn-continuar" class="botao-final">
+                    CONTINUAR
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TELA 5 — FINAL
+        ========================== -->
+
+        <section id="tela-final" class="tela">
+
+            <div class="final">
+
+                <p id="texto-final">
+                    ...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

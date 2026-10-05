@@ -1,0 +1,450 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #080808;
+    color: #eee8df;
+
+    font-family: 'Montserrat', sans-serif;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.tela {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+    overflow-y: auto;
+}
+
+.tela.ativa {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo {
+    width: 100%;
+    max-width: 500px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h1,
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-weight: 500;
+
+    letter-spacing: 4px;
+}
+
+h1 {
+    font-size: clamp(30px, 9vw, 52px);
+}
+
+h2 {
+    font-size: 34px;
+
+    margin-bottom: 45px;
+}
+
+
+/* =========================
+   TEXTOS
+========================= */
+
+.subtitulo {
+    margin-top: 20px;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    color: #aaa39a;
+
+    font-weight: 300;
+}
+
+.conteudo > p {
+    margin-top: 22px;
+
+    line-height: 1.8;
+
+    color: #bdb6ad;
+
+    font-size: 14px;
+}
+
+.destaque {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 25px !important;
+
+    letter-spacing: 3px;
+
+    color: #eee8df !important;
+}
+
+.espaco-topo {
+    margin-top: 45px !important;
+}
+
+
+/* =========================
+   ORNAMENTO
+========================= */
+
+.ornamento {
+    font-size: 18px;
+
+    color: #8d4b55;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   ENTRADAS
+========================= */
+
+.entrada {
+    margin-top: 50px;
+}
+
+label {
+    display: block;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #8f8982;
+
+    margin-bottom: 18px;
+}
+
+input {
+    width: 100%;
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1px solid #555;
+
+    color: #eee8df;
+
+    text-align: center;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 18px;
+
+    padding: 12px;
+
+    outline: none;
+
+    transition: border-color .3s ease;
+}
+
+input:focus {
+    border-color: #a15a64;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+button {
+    margin-top: 30px;
+
+    padding: 14px 30px;
+
+    background: transparent;
+
+    border: 1px solid #555;
+
+    color: #d8d1c8;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .2s ease;
+}
+
+button:hover {
+    border-color: #a15a64;
+
+    background: rgba(161, 90, 100, 0.08);
+}
+
+button:active {
+    transform: scale(.97);
+}
+
+
+/* =========================
+   ERROS
+========================= */
+
+.mensagem-erro {
+    min-height: 25px;
+
+    margin-top: 20px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 17px;
+
+    color: #a86b72;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   LETRAS
+========================= */
+
+.letras {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 35px 0;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 30px;
+
+    color: #ddd5cc;
+}
+
+.letras span:nth-child(even) {
+    color: #5d5550;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   CIFRA
+========================= */
+
+.texto-cifra {
+    margin-top: 30px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 20px;
+
+    letter-spacing: 3px;
+
+    color: #807972;
+
+    user-select: none;
+}
+
+
+/* =========================
+   TRANSIÇÃO
+========================= */
+
+#tela-transicao .conteudo {
+    max-width: 700px;
+}
+
+#texto-transicao {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(26px, 7vw, 45px);
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    transition: opacity 1.5s ease;
+}
+
+#texto-transicao.visivel {
+    opacity: 1;
+}
+
+
+/* =========================
+   CARTA
+========================= */
+
+#tela-carta {
+    align-items: flex-start;
+}
+
+.carta {
+    width: 100%;
+
+    max-width: 600px;
+
+    padding: 50px 10px 80px;
+
+    text-align: center;
+}
+
+.carta p {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 22px;
+
+    line-height: 1.7;
+
+    color: #d8d0c7;
+
+    margin-bottom: 35px;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.carta p.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.pergunta {
+    margin-top: 50px !important;
+
+    font-size: 28px !important;
+
+    color: #eee8df !important;
+}
+
+
+/* =========================
+   BOTÃO FINAL
+========================= */
+
+.botao-final {
+    opacity: 0;
+
+    margin-top: 20px;
+
+    transition:
+        opacity 1.5s ease,
+        background .3s ease;
+}
+
+.botao-final.visivel {
+    opacity: 1;
+}
+
+
+/* =========================
+   TELA FINAL
+========================= */
+
+.final {
+    text-align: center;
+}
+
+#texto-final {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(25px, 7vw, 42px);
+
+    letter-spacing: 2px;
+
+    line-height: 1.6;
+
+    opacity: 0;
+
+    transition: opacity 2s ease;
+}
+
+#texto-final.visivel {
+    opacity: 1;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 500px) {
+
+    .tela {
+        padding: 25px;
+    }
+
+    h1 {
+        letter-spacing: 3px;
+    }
+
+    .carta {
+        padding-top: 35px;
+    }
+
+    .carta p {
+        font-size: 20px;
+    }
+
+}
+
