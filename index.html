@@ -14,10 +14,180 @@
     <main id="app">
 
         <!-- =========================
+             JORNADA — ABERTURA
+        ========================== -->
+
+        <section id="tela-abertura" class="tela">
+
+            <div class="conteudo">
+
+                <div class="ornamento" id="ornamento-abertura">✦</div>
+
+                <h1>O ÚLTIMO CAPÍTULO</h1>
+
+                <p class="subtitulo">
+                    Quatro lugares. Quatro respostas.<br>
+                    Uma chave.
+                </p>
+
+                <button id="btn-comecar">
+                    COMEÇAR
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             JORNADA — ARQUIVO (CARTA DE CADA LOCAL)
+        ========================== -->
+
+        <section id="tela-arquivo" class="tela tela-rolagem">
+
+            <div class="carta arquivo">
+
+                <div class="progresso" data-progresso></div>
+
+                <p class="rotulo" id="arquivo-rotulo">ARQUIVO 01</p>
+
+                <h2 id="arquivo-titulo">A ORIGEM</h2>
+
+                <div id="arquivo-texto" class="texto-arquivo"></div>
+
+                <div id="arquivo-acoes" class="acoes">
+
+                    <p class="aviso" id="arquivo-aviso"></p>
+
+                    <button id="btn-abrir-desafio">
+                        ABRIR DESAFIO
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             JORNADA — DESAFIO
+        ========================== -->
+
+        <section id="tela-desafio" class="tela tela-rolagem">
+
+            <div class="carta arquivo">
+
+                <div class="progresso" data-progresso></div>
+
+                <p class="rotulo" id="desafio-local">ZOO SÃO PAULO</p>
+
+                <h2 id="desafio-titulo">DESAFIO 01</h2>
+
+                <div id="desafio-texto" class="texto-arquivo"></div>
+
+                <div id="desafio-acoes" class="acoes">
+
+                    <div class="entrada">
+
+                        <label for="resposta-desafio">
+                            SUA RESPOSTA
+                        </label>
+
+                        <input
+                            type="text"
+                            id="resposta-desafio"
+                            autocomplete="off"
+                            autocorrect="off"
+                            spellcheck="false"
+                            autocapitalize="characters"
+                        >
+
+                        <button id="btn-responder">
+                            RESPONDER
+                        </button>
+
+                        <p id="erro-desafio" class="mensagem-erro"></p>
+
+                        <p id="dica-desafio" class="dica"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             JORNADA — LETRA ENCONTRADA
+        ========================== -->
+
+        <section id="tela-letra" class="tela">
+
+            <div class="conteudo">
+
+                <div class="ornamento">✦</div>
+
+                <p class="destaque" id="letra-resposta">AMOR</p>
+
+                <p id="letra-instrucao">
+                    Agora faça apenas uma coisa:<br>
+                    pegue a primeira letra da resposta.
+                </p>
+
+                <div class="letra-grande" id="letra-grande">A</div>
+
+                <p id="letra-parte">
+                    Essa letra será a primeira parte do código.
+                </p>
+
+                <div class="progresso progresso-centro" data-progresso></div>
+
+                <p class="aviso" id="letra-aviso"></p>
+
+                <button id="btn-proximo">
+                    PRÓXIMO
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             JORNADA — ARQUIVO FINAL
+        ========================== -->
+
+        <section id="tela-arquivo-final" class="tela tela-rolagem">
+
+            <div class="carta arquivo">
+
+                <p class="rotulo">ARQUIVO FINAL</p>
+
+                <h2>A CHAVE</h2>
+
+                <div id="final-texto" class="texto-arquivo"></div>
+
+                <div id="final-acoes" class="acoes">
+
+                    <button id="btn-usar-chave">
+                        USAR A CHAVE
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
              TELA 1 — INÍCIO
         ========================== -->
 
-        <section id="tela-inicial" class="tela ativa">
+        <section id="tela-inicial" class="tela">
 
             <div class="conteudo">
 
@@ -187,6 +357,7 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="jornada.js"></script>
 
 </body>
 </html>

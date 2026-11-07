@@ -448,3 +448,157 @@ button:active {
 
 }
 
+
+
+/* =========================
+   JORNADA — ARQUIVOS E DESAFIOS
+========================= */
+
+.tela-rolagem {
+    display: block;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.arquivo h2 {
+    margin-bottom: 40px;
+}
+
+.rotulo {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #8d4b55;
+    margin-bottom: 14px;
+}
+
+.carta .texto-arquivo p {
+    font-size: 21px;
+    margin-bottom: 26px;
+}
+
+.carta .texto-arquivo p.forte {
+    color: #eee8df;
+    font-size: 24px;
+}
+
+.acoes {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+    padding-bottom: 30px;
+}
+
+.acoes.visivel {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.aviso {
+    font-size: 11px !important;
+    letter-spacing: 1px;
+    color: #7d766f !important;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.carta .aviso {
+    opacity: 1;
+    transform: none;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0;
+}
+
+.dica {
+    min-height: 20px;
+    margin-top: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #a9a197;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.dica.visivel {
+    opacity: 1;
+}
+
+.carta .mensagem-erro,
+.carta .dica {
+    transform: none;
+    margin-bottom: 0;
+}
+
+.carta .mensagem-erro {
+    opacity: 1;
+    font-size: 18px;
+}
+
+.progresso {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 35px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #4a4440;
+}
+
+.progresso span.achada {
+    color: #ddd5cc;
+}
+
+.progresso-centro {
+    margin: 30px 0 0;
+}
+
+.letra-grande {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 96px;
+    line-height: 1;
+    margin: 30px 0 10px;
+    color: #eee8df;
+    opacity: 0;
+    transform: scale(.85);
+    transition: opacity 1.4s ease, transform 1.4s ease;
+}
+
+.letra-grande.visivel {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#tela-letra .conteudo > p,
+#tela-letra .progresso,
+#tela-letra button {
+    transition: opacity 1s ease;
+}
+
+.oculto {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+@media (max-width: 500px) {
+
+    .carta .texto-arquivo p {
+        font-size: 19px;
+    }
+
+    .letra-grande {
+        font-size: 80px;
+    }
+
+}
+
+.carta p.rotulo {
+    opacity: 1;
+    transform: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    color: #8d4b55;
+}
