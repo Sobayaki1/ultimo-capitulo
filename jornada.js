@@ -228,44 +228,53 @@ function desenharProgresso(qtd) {
     });
 }
 
-// Mostra os parágrafos um a um, com fade. Tocar na tela mostra tudo de uma vez.
+// Escreve os parágrafos letra a letra, com som de tecla.
+// Tocar na tela termina o texto na hora.
+const VELOCIDADE_ARQUIVOS = 38;
+let revelacaoAtual = null;
+
 async function revelarParagrafos(container, linhas, tela, acoes) {
+    if (revelacaoAtual) revelacaoAtual.pular = true;
+    const controle = { pular: false };
+    revelacaoAtual = controle;
+
     container.innerHTML = "";
     acoes.classList.remove("visivel");
 
-    const ps = linhas.map(l => {
-        const p = document.createElement("p");
-        if (l === "#LETRAS") {
-            p.className = "letras-final";
-            p.innerHTML = '<span class="letras"><span>A</span><span>—</span><span>B</span><span>—</span><span>C</span><span>—</span><span>A</span></span>';
-        } else if (l.startsWith("*")) {
-            p.className = "forte";
-            p.innerHTML = l.slice(1);
-        } else {
-            p.innerHTML = l;
-        }
-        container.appendChild(p);
-        return p;
-    });
-
-    let pular = false;
-    const aoTocar = () => { pular = true; };
+    const aoTocar = (ev) => {
+        if (ev.target.closest("button, input")) return;
+        controle.pular = true;
+    };
     tela.addEventListener("click", aoTocar);
 
     await esperar(1100);
 
-    for (const p of ps) {
-        p.classList.add("visivel");
-        if (!pular) {
-            requestAnimationFrame(() => tela.scrollTo({ top: tela.scrollHeight, behavior: "smooth" }));
-            await esperar(1300);
+    for (const l of linhas) {
+        const p = document.createElement("p");
+        container.appendChild(p);
+
+        if (l === "#LETRAS") {
+            p.className = "letras-final";
+            p.innerHTML = '<span class="letras"><span>A</span><span>—</span><span>B</span><span>—</span><span>C</span><span>—</span><span>A</span></span>';
+            p.classList.add("visivel");
+            manterVisivel(tela, p, true);
+            if (!controle.pular) await esperar(900);
+            continue;
         }
+
+        let texto = l;
+        if (l.startsWith("*")) { p.className = "forte"; texto = l.slice(1); }
+
+        p.classList.add("visivel");
+        await digitar(p, texto, tela, VELOCIDADE_ARQUIVOS, controle);
+        if (!controle.pular) await esperar(650);
     }
 
     tela.removeEventListener("click", aoTocar);
-    await esperar(pular ? 200 : 600);
+    if (revelacaoAtual !== controle) return;
+    await esperar(controle.pular ? 200 : 500);
     acoes.classList.add("visivel");
-    requestAnimationFrame(() => tela.scrollTo({ top: tela.scrollHeight, behavior: "smooth" }));
+    manterVisivel(tela, acoes, true);
 }
 
 

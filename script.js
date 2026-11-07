@@ -126,6 +126,8 @@ function verificarMensagem() {
 
         erroCifra.textContent = "";
 
+        tocarMusica();
+
         iniciarTransicao();
 
     } else {
@@ -225,23 +227,7 @@ function rolarParaBaixoSuave() {
 }
 
 function escreverTexto(elemento, texto) {
-    return new Promise((resolve) => {
-        let indice = 0;
-        elemento.textContent = "";
-
-        const intervalo = setInterval(() => {
-            elemento.textContent += texto[indice];
-            indice++;
-
-            // Rola acompanhando cada caractere
-            rolarParaBaixo();
-
-            if (indice >= texto.length) {
-                clearInterval(intervalo);
-                resolve();
-            }
-        }, velocidadeEscrita);
-    });
+    return digitar(elemento, texto, telaCarta, velocidadeEscrita);
 }
 
 
@@ -270,8 +256,7 @@ async function iniciarCarta() {
 
         paragrafo.classList.add("visivel");
 
-        // Rola suavemente ao iniciar um novo parágrafo
-        rolarParaBaixoSuave();
+        manterVisivel(telaCarta, paragrafo, true);
 
         // Escreve letra por letra
         await escreverTexto(
@@ -288,7 +273,7 @@ async function iniciarCarta() {
     await esperar(800);
 
     btnContinuar.classList.add("visivel");
-    rolarParaBaixoSuave();
+    manterVisivel(telaCarta, btnContinuar, true);
 
 }
 
