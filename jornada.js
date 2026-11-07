@@ -140,11 +140,16 @@ const ETAPAS = [
 const TEXTO_FINAL = [
     "Quatro lugares.<br>Quatro respostas.<br>Quatro letras.",
     "#LETRAS",
+    "*Elas guardam a chave."
+];
+
+// Dicas escondidas: cada uma aparece 2 minutos depois da anterior
+const DICAS_FINAL = [
     "Cada letra tem o seu lugar no alfabeto.",
     "Descubra o lugar de cada uma.",
-    "Some tudo.",
-    "*O resultado é a chave."
+    "Some tudo. O resultado é a chave."
 ];
+const INTERVALO_DICA = 2 * 60 * 1000;
 
 
 /* ==========================================
@@ -418,14 +423,78 @@ function proximaEtapa() {
     }
 }
 
-function mostrarArquivoFinal() {
+let timerDicas = null;
+
+async function mostrarArquivoFinal() {
     estado.passo = "final";
     salvar();
     irPara(jTelas.final);
-    revelarParagrafos(
+    document.getElementById("dicas-final").innerHTML = "";
+    document.getElementById("timer-dica").textContent = "";
+    await revelarParagrafos(
         document.getElementById("final-texto"), TEXTO_FINAL,
         jTelas.final, document.getElementById("final-acoes")
     );
+    if (!estado.inicioDicas) {
+        estado.inicioDicas = Date.now();
+        salvar();
+    }
+    iniciarTimerDicas();
+}
+
+function iniciarTimerDicas() {
+    clearInterval(timerDicas);
+    const caixa = document.getElementById("dicas-final");
+    const timer = document.getElementById("timer-dica");
+
+    function atualizar() {
+        const passado = Date.now() - estado.inicioDicas;
+        const liberadas = Math.min(DICAS_FINAL.length, Math.floor(passado / INTERVALO_DICA));
+
+        while (caixa.children.length < liberadas) {
+            const p = document.createElement("p");
+            p.className = "dica";
+            caixa.appendChild(p);
+            const n = caixa.children.length;
+            p.textContent = "Dica " + n + ": " + DICAS_FINAL[n - 1];
+            requestAnimationFrame(() => p.classList.add("visivel"));
+            manterVisivel(jTelas.final, document.getElementById("final-acoes"), true);
+        }
+
+        if (liberadas >= DICAS_FINAL.length) {
+            timer.textContent = "";
+            clearInterval(timerDicas);
+            return;
+        }
+
+        const resta = Math.ceil((INTERVALO_DICA * (liberadas + 1) - passado) / 1000);
+        const mm = Math.floor(resta / 60), ss = String(resta % 60).padStart(2, "0");
+        timer.textContent = (liberadas === 0 ? "Uma dica aparece em " : "Próxima dica em ") + mm + ":" + ss;
+    }
+
+    atualizar();
+    timerDicas = setInterval(atualizar, 1000);
+}
+
+function verificarChaveFinal() {
+    const input = document.getElementById("chave-final");
+    const erro = document.getElementById("erro-chave-final");
+    if (input.value.trim() === "7") {
+        erro.textContent = "";
+        input.blur();
+        clearInterval(timerDicas);
+        mostrarCifra();
+    } else {
+        erro.textContent = "CHAVE INCORRETA. Talvez você ainda tenha esquecido alguma coisa pelo caminho.";
+        input.value = "";
+        input.focus();
+    }
+}
+
+function mostrarCifra() {
+    estado.passo = "cifra";
+    salvar();
+    irPara(document.getElementById("tela-cifra"));
 }
 
 function mostrarChave() {
@@ -448,7 +517,8 @@ document.getElementById("btn-abrir-desafio").addEventListener("click", mostrarDe
 document.getElementById("btn-responder").addEventListener("click", verificarResposta);
 respostaInput.addEventListener("keydown", ev => { if (ev.key === "Enter") verificarResposta(); });
 document.getElementById("btn-proximo").addEventListener("click", proximaEtapa);
-document.getElementById("btn-usar-chave").addEventListener("click", mostrarChave);
+document.getElementById("btn-chave-final").addEventListener("click", verificarChaveFinal);
+document.getElementById("chave-final").addEventListener("keydown", ev => { if (ev.key === "Enter") verificarChaveFinal(); });
 
 // Reinício escondido (para testar): tocar 5 vezes seguidas no ✦ da abertura,
 // ou abrir o site com ?reiniciar no final do link.
@@ -485,6 +555,7 @@ document.getElementById("ornamento-abertura").addEventListener("click", () => {
         case "letra":   mostrarLetra(); break;
         case "final":   mostrarArquivoFinal(); break;
         case "chave":   mostrarChave(); break;
+        case "cifra":   mostrarCifra(); break;
         default:        mostrarAbertura();
     }
 

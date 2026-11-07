@@ -602,3 +602,24 @@ button:active {
     margin-bottom: 14px;
     color: #8d4b55;
 }
+
+.dicas-final .dica {
+    margin-top: 6px;
+    margin-bottom: 14px;
+    font-size: 19px;
+}
+
+.carta p.timer-dica {
+    opacity: 1;
+    transform: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #6f6862;
+    margin: 8px 0 0;
+    min-height: 14px;
+}
+
+#final-acoes .entrada {
+    margin-top: 30px;
+}

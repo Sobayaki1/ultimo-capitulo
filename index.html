@@ -172,9 +172,31 @@
 
                 <div id="final-acoes" class="acoes">
 
-                    <button id="btn-usar-chave">
-                        USAR A CHAVE
-                    </button>
+                    <div id="dicas-final" class="dicas-final"></div>
+
+                    <p class="timer-dica" id="timer-dica"></p>
+
+                    <div class="entrada">
+
+                        <label for="chave-final">
+                            DIGITE A CHAVE
+                        </label>
+
+                        <input
+                            type="text"
+                            id="chave-final"
+                            maxlength="10"
+                            autocomplete="off"
+                            inputmode="numeric"
+                        >
+
+                        <button id="btn-chave-final">
+                            DESBLOQUEAR
+                        </button>
+
+                        <p id="erro-chave-final" class="mensagem-erro"></p>
+
+                    </div>
 
                 </div>
 
